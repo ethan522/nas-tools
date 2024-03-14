@@ -34,7 +34,7 @@ RUN echo "${WORKDIR}/" > /usr/lib/python${python_ver%.*}/site-packages/nas-tools
 RUN echo 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf
 RUN echo 'fs.inotify.max_user_instances=524288' >> /etc/sysctl.conf
 RUN git config --global pull.ff only
-RUN git clone -b v2.9.2 ${REPO_URL} ${WORKDIR} --depth=1 --recurse-submodule
+RUN git clone -b master ${REPO_URL} ${WORKDIR} --depth=1 --recurse-submodule
 RUN git config --global --add safe.directory ${WORKDIR}
 EXPOSE 3000
 VOLUME ["/config"]
