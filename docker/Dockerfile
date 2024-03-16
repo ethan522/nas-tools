@@ -8,9 +8,13 @@ RUN curl https://rclone.org/install.sh | bash
 RUN if [ "$(uname -m)" = "x86_64" ]; then ARCH=amd64; elif [ "$(uname -m)" = "aarch64" ]; then ARCH=arm64; fi
 RUN curl https://dl.min.io/client/mc/release/linux-${ARCH}/mc --create-dirs -o /usr/bin/mc
 RUN chmod +x /usr/bin/mc
-RUN pip install --upgrade pip setuptools wheel
-RUN pip install cython
-RUN pip install -r https://raw.githubusercontent.com/ethan522/nas-tools/master/requirements.txt
+RUN apk add --no-cache pipx
+RUN pipx install --upgrade pip setuptools wheel
+RUN pipx install cython
+RUN pipx install -r https://raw.githubusercontent.com/ethan522/nas-tools/master/requirements.txt
+# RUN pip install --upgrade pip setuptools wheel
+# RUN pip install cython
+# RUN pip install -r https://raw.githubusercontent.com/ethan522/nas-tools/master/requirements.txt
 RUN apk del libffi-dev
 RUN npm install pm2 -g
 RUN rm -rf /tmp/* /root/.cache /var/cache/apk/*
