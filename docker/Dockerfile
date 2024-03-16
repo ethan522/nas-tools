@@ -9,7 +9,8 @@ RUN if [ "$(uname -m)" = "x86_64" ]; then ARCH=amd64; elif [ "$(uname -m)" = "aa
 RUN curl https://dl.min.io/client/mc/release/linux-${ARCH}/mc --create-dirs -o /usr/bin/mc
 RUN chmod +x /usr/bin/mc
 RUN apk add --no-cache pipx
-RUN pipx upgrade setuptools wheel
+RUN pipx upgrade setuptools
+RUN pipx upgrade wheel
 RUN pipx install cython
 RUN pipx install -r https://raw.githubusercontent.com/ethan522/nas-tools/master/requirements.txt
 # RUN pip install --upgrade pip setuptools wheel
